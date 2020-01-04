@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.api">
+
+<insert id="insertCustomer">
+INSERT 
+	INTO
+		CUSTOMER
+		(name,age,active)
+		values (#{name},#{age},#{active})
+</insert>
+
+<update id="updateCustomer">
+UPDATE 
+	CUSTOMER 
+SET
+	name = #{name},
+	age = #{age},
+	active = #{active}
+WHERE
+	id = #{id}
+</update>
+
+<delete id="deleteCustomer">
+DELETE
+	FROM
+CUSTOMER
+	WHERE
+	 	id = #{id}
+</delete>
+
+<select id ="CustomerList" resultType = "com.example.vo.Customer">
+	SELECT 
+		*
+	FROM
+		CUSTOMER
+	WHERE
+		1 = 1
+		<if test="age!=0">
+			AND age = #{age}
+		</if>
+</select>
+</mapper>
